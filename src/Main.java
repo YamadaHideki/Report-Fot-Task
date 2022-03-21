@@ -27,20 +27,18 @@ public class Main {
             result.add(Arrays.stream(arrayInt()).sum());
         });
 
-        Thread mainThread = new Thread(() -> {
-            try {
-                firstThread.join();
-                secondThread.join();
-                thirdThread.join();
-
-                System.out.println(result.sum());
-            } catch (InterruptedException ignored) { }
-        });
-
-        mainThread.start();
-
         firstThread.start();
         secondThread.start();
         thirdThread.start();
+
+        try {
+            firstThread.join();
+            secondThread.join();
+            thirdThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Общая сумма: " + result.sum());
     }
 }
