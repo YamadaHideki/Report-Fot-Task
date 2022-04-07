@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.concurrent.atomic.LongAdder;
 
 public class Main {
@@ -16,15 +15,21 @@ public class Main {
     public static void main(String[] args) {
 
         Thread firstThread = new Thread(() -> {
-            result.add(Arrays.stream(arrayInt()).sum());
+            for (int value : arrayInt()) {
+                result.add(value);
+            }
         });
 
         Thread secondThread = new Thread(() -> {
-            result.add(Arrays.stream(arrayInt()).sum());
+            for (int value : arrayInt()) {
+                result.add(value);
+            }
         });
 
         Thread thirdThread = new Thread(() -> {
-            result.add(Arrays.stream(arrayInt()).sum());
+            for (int value : arrayInt()) {
+                result.add(value);
+            }
         });
 
         firstThread.start();
